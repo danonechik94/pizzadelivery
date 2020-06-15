@@ -1,0 +1,33 @@
+$primaryColor: #ff8800;
+
+.button {
+  background-color: transparent;
+  padding: 4px 8px;
+  color: $primaryColor;
+  border: 1px solid $primaryColor;
+  border-radius: 6px;
+  transition: background-color 0.1s, color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primaryColor;
+    color: #ffffff;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.desktopText {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.mobileText {
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: inline;
+  }
+}

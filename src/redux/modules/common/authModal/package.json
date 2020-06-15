@@ -1,0 +1,6 @@
+{
+  "name": "authModal reducer",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./reducer.js"
+}

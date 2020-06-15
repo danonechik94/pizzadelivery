@@ -1,0 +1,57 @@
+.productCard {
+    padding: 32px 16px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.productImage {
+    align-self: center;
+}
+
+.infoContainer {
+    padding-top: 16px;
+    align-self: stretch;
+    @media screen and (max-width: 767px) {
+        padding-left: 16px;
+    }
+}
+
+.ingredientsList {
+    list-style: circle;
+    padding-left: 16px;
+}
+
+.ingredientsList,
+.ingredientsListLabel {
+    font-size: 14px;
+    color: #7c7c7c;
+}
+
+.ingredientsListLabel {
+    margin: 0;
+    padding-bottom: 8px;
+}
+
+.priceContainer {
+    padding-top: 24px;
+
+    @media screen and (max-width: 767px) {
+        padding-top: 10px;
+    }
+}
+
+.priceWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priceLabel {
+    @media screen and (max-width: 767px) {
+        .price__label {
+            display: none;
+        }
+    }
+}

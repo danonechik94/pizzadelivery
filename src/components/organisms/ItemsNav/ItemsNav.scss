@@ -1,0 +1,41 @@
+.contentWrapper {
+  max-width: 1056px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.categories {
+  &--withLogo {
+    display: flex;
+    align-items: center;
+    max-width: 1024px;
+    margin: auto;
+  }
+}
+
+.category {
+  display: inline-block;
+  margin-right: 16px;
+  padding: 8px 10px;
+  font-size: 14px;
+  background-color: #cccccc;
+  border-radius: 15px;
+  color: #7c7c7c;
+
+  transition: background-color 0.2s linear, color 0.2s linear;
+  will-change: background-color, color;
+
+  &--active {
+    background-color: #ff8800;
+    color: #ffffff;
+  }
+
+  &Link {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.logoItem {
+  margin-left: auto;
+}

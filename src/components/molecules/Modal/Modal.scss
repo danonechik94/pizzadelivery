@@ -1,0 +1,180 @@
+$curveEntranceEasing: cubic-bezier(0, 0, 0.4, 0.9);
+$curveExitEasing: cubic-bezier(0.2, 0, 1, 0.9);
+$curveLinear: linear;
+
+$durationMedium2: 300ms;
+
+.layout {
+    z-index: 5;
+}
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+}
+
+.helper {
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.wrapper {
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.body {
+    box-sizing: border-box;
+    padding: 16px;
+    text-align: left;
+}
+
+.bodyInner {
+    height: 100%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(black, 0.7);
+}
+  
+
+.isFullScreen {
+    .container {
+        background: white;
+    }
+
+    .helper {
+        display: none;
+    }
+
+    .wrapper {
+        display: block;
+        vertical-align: unset;
+        height: 100%;
+    }
+
+    .body {
+        display: block;
+        height: 100%;
+        padding: 0;
+    }
+
+    .block {
+        height: 100%;
+    }
+}
+
+.closerIcon {
+    cursor: pointer;
+    fill: #888;
+    transition: fill 0.2s;
+
+    &:hover {
+        fill: #212121;
+    }
+}
+
+.content {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    min-width: 288px;
+
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 16px 36px 0 rgba(0, 0, 0, 0.2);
+
+    width: 588px;
+    @media screen and (max-width:620px) {
+        width: 100%;
+    }
+}
+
+.header {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.main {
+    padding: 48px 32px 32px;
+}
+
+.scrollable {
+    height: 100%;
+    overflow: auto;
+}
+
+.body {
+    position: relative;
+    text-align: center;
+}
+/* overlay animation */
+
+.overlayIsHidden {
+    opacity: 0;
+}
+
+.overlayIsShowed {
+    opacity: 1;
+}
+
+.overlayIsShowing {
+    transition: opacity $durationMedium2 $curveLinear;
+    opacity: 1;
+}
+
+.overlayIsHiding {
+    transition: opacity $durationMedium2 $curveLinear;
+    opacity: 0;
+}
+
+/* body animation */
+
+.bodyIsHidden {
+    opacity: 0;
+    transform: translateY(-16px);
+}
+
+.bodyIsShowed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bodyIsShowing {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity $durationMedium2 $curveLinear, transform $durationMedium2 $curveEntranceEasing;
+}
+
+.bodyIsHiding {
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: opacity $durationMedium2 $curveLinear, transform $durationMedium2 $curveExitEasing;
+}
+
+.bodyAnimation {
+    height: 100%;
+}
+  

@@ -1,0 +1,19 @@
+.profile {
+    color: #000000;
+    cursor: pointer;
+}
+.profileLabel{
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .profile {
+        color: #ffffff;
+    }
+    .profileIcon {
+        display: none;
+    }
+    .profileLabel {
+        display: block;
+    }
+}

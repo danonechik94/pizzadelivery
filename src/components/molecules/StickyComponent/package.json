@@ -1,0 +1,6 @@
+{
+    "name": "StickyComponent component",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./StickyComponent.js"
+}  

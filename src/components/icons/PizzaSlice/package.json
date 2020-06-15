@@ -1,0 +1,6 @@
+{
+    "name": "PizzaSlice component",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./PizzaSlice.js"
+}  

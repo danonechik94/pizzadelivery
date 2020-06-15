@@ -1,0 +1,6 @@
+{
+    "name": "InView checker component",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./InViewComponent.js"
+}  

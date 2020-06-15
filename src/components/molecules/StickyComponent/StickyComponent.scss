@@ -1,0 +1,26 @@
+.stickyWrapper {
+    position: relative;
+      
+    &--stick .stickyInner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        animation: drop-down 0.2s cubic-bezier(0.53,0.58,0.06,0.84);
+    }
+}
+
+.stickyInner {
+    will-change: transform;
+}
+
+@keyframes drop-down {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}

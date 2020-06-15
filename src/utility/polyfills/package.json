@@ -1,0 +1,6 @@
+{
+  "name": "polyfills",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./polyfills.js"
+}

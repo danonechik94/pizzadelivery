@@ -1,0 +1,6 @@
+{
+    "name": "Cross component",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./Cross.js"
+}  
