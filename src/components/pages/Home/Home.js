@@ -28,6 +28,7 @@ import Gallery from 'organisms/Gallery';
 import InViewComponent from 'molecules/InViewComponent';
 import StickyComponent from 'molecules/StickyComponent';
 import Tooltip from 'atoms/Tooltip';
+import NumberInput from 'atoms/NumberInput';
 import OfferItem from './blocks/OfferItem';
 import OfferModal from './blocks/OfferModal';
 
@@ -175,9 +176,7 @@ class Home extends React.PureComponent {
                 <InViewComponent onInView={this.handleInView(group)} options={{threshold: 0.15}}>
                   <h2 className={styles.categoryTitle}>{group.title}</h2>
                   <Tooltip ref={this.tooltipRef}>
-                    <span className={cls(styles.countControl, styles.itemMinus)} onClick={this.handleItemDelete}>-</span>
-                    <span className={styles.itemCount}>{this.getSelectedItemCount()}</span>
-                    <span className={cls(styles.countControl, styles.itemPlus)} onClick={this.handleItemChoose}>+</span>
+                    <NumberInput value={this.getSelectedItemCount()} onAdd={this.handleItemChoose} onSubstract={this.handleItemDelete} />
                   </Tooltip>
                   <ItemsGrid 
                     data={groupItems} 

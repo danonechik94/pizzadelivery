@@ -1,17 +1,17 @@
-.cart {
-    display: flex;
-    align-items: center;
-    padding: 8px 10px;
-    background-color: #ff8800;
-    color: #ffffff;
-    border-radius: 15px;
-    text-decoration: none;
+@import 'style-mixins';
+
+.cartListContainer {
+    text-align: left;
 }
 
-.cartCount {
-    margin-right: 4px;
+.cartListTitle {
+    margin: 0 0 8px;
+    padding: 0 8px;
+    @include font-large;
 }
 
-.cartIcon {
-    fill: #ffffff;
+.cartListItem {
+    padding: 16px 8px;
+    border-top: 1px solid #eeeeee;
+    
 }

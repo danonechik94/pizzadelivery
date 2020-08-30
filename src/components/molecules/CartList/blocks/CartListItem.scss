@@ -1,0 +1,30 @@
+@import 'style-mixins';
+
+.cartListItem {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.itemInfoContainer {
+    padding-left: 16px;
+}
+
+.cartListTitle {
+    margin: 0 0 8px;
+    @include font-large;
+}
+
+.itemTitle {
+    margin: 0 0 8px;
+    @include font-base;
+}
+
+.itemPriceWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.priceLabel {
+    padding-right: 8px;
+}

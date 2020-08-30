@@ -10,7 +10,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import configureStore from './redux/configureStore';
 
 import history from 'utility/history';
-import App from './components/layouts/App';
+import App from './components/layouts/app';
 
 const initialState = {};
 const store = configureStore(initialState, history);
@@ -34,7 +34,7 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./components/layouts/App'], () => {
+  module.hot.accept(['./components/layouts/app'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });

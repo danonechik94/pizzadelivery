@@ -3,24 +3,50 @@ import { connect } from 'react-redux';
 
 import { cartDataSelector } from '_redux/modules/cart/selectors';
 
+import { 
+  addToCart,
+  deleteFromCart, 
+} from '_redux/modules/cart/actions';
+ 
+import CartListItem from './blocks/CartListItem';
+
 import styles from  './CartList.scss';
 
-const CartList = ({ count, items }) => {
+const CartList = ({ 
+  count, 
+  isCompact,
+  items, 
+  dispatch 
+}) => {
+
+  const handleAddItemCount = (item) => {
+    dispatch(addToCart(item));
+  };
+
+  const handleDeleteItemCount = (item) => {
+    dispatch(deleteFromCart(item));
+  };
+
   return (
-    <React.Fragment>
-      <h3>
+    <div className={styles.cartListContainer}>
+      <h3 className={styles.cartListTitle}>
         {count} items in cart
       </h3>
-      <ul>
+      <ul className={styles.cartList}>
         {items.map((item) => (
-          <li>
-            {item.name} - {item.count}
+          <li className={styles.cartListItem}>
+            <CartListItem 
+              isCompact={isCompact}
+              item={item} 
+              onAddCount={handleAddItemCount} 
+              onDeleteCount={handleDeleteItemCount} 
+            />
           </li>
         ))}
       </ul>
       <a>Close</a>
       <a>Clear Cart</a>
-    </React.Fragment>
+    </div>
   );
 };
 

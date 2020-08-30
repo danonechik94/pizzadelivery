@@ -57,22 +57,6 @@
     box-shadow: rgba(115, 121, 140, 0.5) 0px 5px 15px -5px;
 }
 
-.itemCount {
-    padding: 0 8px;
-    @include font-base;
-}
-
-.countControl {
-    display: inline-block;
-    height: $controSmallHeight;
-    width: $controSmallHeight;
-    text-align: center;
-    line-height: $controSmallHeight;
-    border-radius: 2px;
-    background-color: $primaryColor;
-    color: #ffffff;
-}
-
 @keyframes rotate-center {
     0% {
         transform: rotate(0);
