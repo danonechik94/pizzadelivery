@@ -53,7 +53,6 @@ const Navigation = (props) => {
 
     return (
         <div className={cls(className, styles.navigations)}>
-            {hamburgerIcon}
             <ul className={cls(styles.navigationList, { [styles['navigationList--active']]: toggled })}>
                 {navItems}
                 <li className={styles.cartNavigationItem}>
@@ -63,6 +62,7 @@ const Navigation = (props) => {
                     {profileNode}
                 </li>
             </ul>
+            {hamburgerIcon}
         </div>
     );
 };

@@ -2,8 +2,8 @@ import React from 'react';
 import cls from 'classnames';
 import styles from './Button.scss';
 
-const Button = ({ text, className }) => (
-    <button className={cls(styles.button, className)}>
+const Button = ({ text, className, type = 'button', size = 'medium', ...restProps }) => (
+    <button className={cls(styles.button, className, styles[`button--${size}`])} type={type} {...restProps}>
         {text.mobileText ? (
             <React.Fragment>
                 <span className={styles.desktopText}>{text.desktopText}</span>
@@ -14,5 +14,9 @@ const Button = ({ text, className }) => (
         )}
     </button>
 );
+
+Button.defaultProps = {
+    onClick: () => {}
+};
 
 export default Button;

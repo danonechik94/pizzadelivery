@@ -1,0 +1,59 @@
+
+@import 'style-mixins';
+
+.offerItem {
+    display: flex;
+    align-items: center;
+    text-align: left;
+
+    @include maxMobile {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.offerImage {
+
+}
+
+.offerInfoContainer {
+    padding-left: 24px;
+
+    @include maxMobile {
+        padding-left: 0;
+    }
+}
+
+.offerTitle {
+    margin-top: 0;
+
+    @include maxMobile {
+        margin-top: initial;
+    }
+}
+
+.offerDescription {
+
+}
+
+
+.priceContainer {
+    padding-top: 24px;
+
+    @media screen and (max-width: 767px) {
+        padding-top: 10px;
+    }
+}
+
+.priceWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addedItemText {
+    @include font-base;
+    // Match button height to prevent modal resize
+    line-height: $controMediumlHeight;
+    color: $primaryColor;
+}

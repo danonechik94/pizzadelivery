@@ -1,0 +1,14 @@
+@import 'style-mixins';
+
+.formSwitcherText {
+    color: $primaryColor;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    cursor: pointer;
+
+    @include font-small;
+
+    &:hover {
+        opacity: 1;
+    }
+}

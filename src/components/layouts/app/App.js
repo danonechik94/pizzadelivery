@@ -13,7 +13,9 @@ import Auth from 'organisms/Auth';
 import Modal from 'molecules/Modal';
 import Home from 'pages/Home';
 
+import { cartDataSelector } from '_redux/modules/cart/selectors';
 import { authSelector } from '_redux/modules/common/auth/selectors';
+
 import { showAuth, hideAuth } from '_redux/modules/common/authModal/actions';
 
 import styles from './App.scss';
@@ -21,6 +23,7 @@ import styles from './App.scss';
 @connect(store => ({
   showAuthState: store.common.authModal.showAuth,
   auth: authSelector(store),
+  cartData: cartDataSelector(store),
 }))
 class App extends React.PureComponent {
   closeAuthModal = () => {
@@ -34,7 +37,11 @@ class App extends React.PureComponent {
   };
 
   render() {
-    const { auth, showAuthState } = this.props;
+    const { 
+      auth, 
+      showAuthState,
+      cartData,
+    } = this.props;
   
     return (
       <Router>
@@ -42,6 +49,7 @@ class App extends React.PureComponent {
           <Header
             auth={auth}
             showAuth={this.showAuthModal}
+            cartData={cartData}
           />
 
           <Switch>

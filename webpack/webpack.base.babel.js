@@ -32,6 +32,11 @@ const scssLoader = [
     loader: 'sass-loader',
     options: {
       sourceMap: true,
+      sassOptions: {
+        includePaths: [
+          path.join(rootPath, 'src/styles')
+        ]
+      }
     },
   },
 ];

@@ -1,11 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { cartDataSelector } from '_redux/modules/cart/selectors';
 
 import styles from  './Cart.scss';
-const Cart = ({ itemsCount }) => {
-  
+
+const Cart = ({ count, onCartClick }) => {
   return (
-    <a className={styles.cart} href="/cart">
-        <span className={styles.cartCount}>{itemsCount}</span>
+    <a className={styles.cart} href="/cart" onClick={onCartClick}>
+        <span className={styles.cartCount}>{count}</span>
         <svg 
           className={styles.cartIcon} 
           xmlns="http://www.w3.org/2000/svg" 
@@ -20,8 +23,14 @@ const Cart = ({ itemsCount }) => {
 };
 
 Cart.defaultProps = {
-  itemsCount: 0,
+  count: 0,
+  onCartClick: () => {}
 };
 
-export default Cart;
+export default connect((state) => {
+  const { count } = cartDataSelector(state);
+  return {
+    count
+  };
+})(Cart);
 

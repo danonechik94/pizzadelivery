@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 
 import cls from 'classnames';
 import styles from './Home.scss';
 
-import getItems from '_redux/modules/items/actions';
 import { 
   itemsSelector,
   itemsStateSelector,
 } from '_redux/modules/items/selectors';
+import { cartDataSelector } from '_redux/modules/cart/selectors';
+
+import { 
+  addToCart,
+  deleteFromCart, 
+} from '_redux/modules/cart/actions';
+import getItems from '_redux/modules/items/actions';
+
 
 import _range from 'lodash/range';
 
@@ -20,7 +27,9 @@ import ItemsNav from 'organisms/ItemsNav';
 import Gallery from 'organisms/Gallery';
 import InViewComponent from 'molecules/InViewComponent';
 import StickyComponent from 'molecules/StickyComponent';
-import Logo from 'icons/Logo';
+import Tooltip from 'atoms/Tooltip';
+import OfferItem from './blocks/OfferItem';
+import OfferModal from './blocks/OfferModal';
 
 import { CATEGORY_NAMES } from 'constants/names';
 
@@ -33,32 +42,102 @@ const ScrollSection = ScrollElement(({children, parentBindings, ...restProps}) =
 @connect(store => ({
   itemsState: itemsStateSelector(store),
   itemsData: itemsSelector(store),
+  cartData: cartDataSelector(store),
 }))
 class Home extends React.PureComponent {
   state = {
     visibleItem: null,
+    isOfferModalVisible: false,
+    offerData: undefined,
   };
+
+  tooltipRef = createRef(null);
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getItems());
   }
 
+  componentDidUpdate() {
+    if (this.currentItem) {
+      const { cartData: { items } } = this.props;
+      const selectedItem = items.find((item) => item.id === this.currentItem.id);
+      if (!selectedItem || selectedItem.count === 0) {
+        this.currentItem = null;
+        this.tooltipRef.current.hide();
+      }
+    }
+  }
+
   handleInView = (group) => () => {
     this.setState({ visibleItem: group });
   };
 
+  handleOfferClick = (offerData) => {
+    this.setState({
+      isOfferModalVisible: true,
+      offerData,
+    });
+  };
+
+  handleOfferChoose = (offerData) => {
+    this.props.dispatch(addToCart(offerData));
+  };
+
+  handleGridItemChoose = (itemData, clickElementBoundingRect) => {
+    this.currentItem = itemData;
+    this.handleItemChoose(itemData);
+    this.tooltipRef.current.show(clickElementBoundingRect);
+  };
+
+  handleItemChoose = () => {
+    if (this.currentItem) {
+      this.tooltipRef.current.resetDisappear();
+      this.props.dispatch(addToCart(this.currentItem));
+    }
+  };
+
+  handleItemDelete = () => {
+    if (this.currentItem) {
+      this.tooltipRef.current.resetDisappear();
+      this.props.dispatch(deleteFromCart(this.currentItem));
+    }
+  };
+
+  handleOfferModalClose = () => {
+    this.currentItem = null;
+    this.setState({
+      isOfferModalVisible: false,
+      offerData: undefined,
+    });
+  };
+
+  getSelectedItemCount = () => {
+    if (!this.currentItem) {
+      return 0;
+    }
+
+    const { cartData: { items } } = this.props;
+    const selectedItem = items.find((item) => item.id === this.currentItem.id) || { count: 0 };
+    return selectedItem.count;
+  };
+
   renderSliderItems = () => {
-    return _range(6).map(_ => (
-      <div className={styles.slideContent}>
-        <h2 className={styles.slideTitle}>New Combo <br/>for just 15&nbsp;&euro;</h2>
-        <Logo className={styles.slideIcon} width={150} height={150} />
-      </div>
-    ));
+    // TODO implement offers as separate items and entity in DB
+    return _range(6).map(_ => 
+      <OfferItem 
+        data={{
+          description: 'New Combo <br/>for just 15&nbsp;&euro;',
+          name: 'New Combo',
+          price: { base: 15 }
+        }}
+        onOfferClick={this.handleOfferClick} 
+      />
+    );
   };
 
   renderContent = () => {
-    const { itemsData } = this.props;
+    const { itemsData, cartData } = this.props;
     const { visibleItem } = this.state;
     const groups = itemsData.reduce((groups, item) => {
       if (!groups.some(group => group.id === item.type)) {
@@ -95,7 +174,16 @@ class Home extends React.PureComponent {
               >
                 <InViewComponent onInView={this.handleInView(group)} options={{threshold: 0.15}}>
                   <h2 className={styles.categoryTitle}>{group.title}</h2>
-                  <ItemsGrid data={groupItems} />
+                  <Tooltip ref={this.tooltipRef}>
+                    <span className={cls(styles.countControl, styles.itemMinus)} onClick={this.handleItemDelete}>-</span>
+                    <span className={styles.itemCount}>{this.getSelectedItemCount()}</span>
+                    <span className={cls(styles.countControl, styles.itemPlus)} onClick={this.handleItemChoose}>+</span>
+                  </Tooltip>
+                  <ItemsGrid 
+                    data={groupItems} 
+                    cartData={cartData}
+                    onChooseItem={this.handleGridItemChoose} 
+                  />
                 </InViewComponent>
               </ScrollSection>
             );
@@ -107,6 +195,7 @@ class Home extends React.PureComponent {
 
   render() {
     const { itemsState } = this.props;
+    const { isOfferModalVisible, offerData } = this.state;
     const loadingData = itemsState.loading || itemsState.initial || itemsState.error;
 
     return (
@@ -117,16 +206,18 @@ class Home extends React.PureComponent {
             slideClassName: styles.featured
           }} 
         />
-        {/* <div className={styles['featured-wrapper']}>
-            <ul className={styles['featured-slider']}>
-                
-            </ul>
-        </div> */}
         {loadingData ? (
           <div className={styles.loaderContainer}>
             <PizzaSlice className={styles.loaderIcon} />
           </div>
         ) : this.renderContent()} 
+
+        <OfferModal 
+          isOpen={isOfferModalVisible} 
+          data={offerData} 
+          onOfferChoose={this.handleOfferChoose}
+          onOfferModalClose={this.handleOfferModalClose} 
+        />
       </div>
     );
   }

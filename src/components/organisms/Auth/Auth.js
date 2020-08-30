@@ -9,6 +9,11 @@ const FORM_TYPE = {
     registration: 'registration'
 };
 
+const CHANGE_FORM_TEXT = {
+    [FORM_TYPE.login]: 'Don\'t have an account? Click here.',
+    [FORM_TYPE.registration]: 'Have an account? Click here.',
+}
+
 const Auth = (props) => {
     const [ activeForm, changeActiveForm ] = useState(FORM_TYPE.login);
     const handleChangeFormClick = () => {
@@ -20,8 +25,13 @@ const Auth = (props) => {
     return (
         <div className={styles.formContainer}>
             {formNode}
-            <div className={styles.formSwitcher} onClick={handleChangeFormClick}>
-                Change Form Type
+            <div className={styles.formSwitcher} >
+                <span 
+                    className={styles.formSwitcherText} 
+                    onClick={handleChangeFormClick}
+                >
+                    {CHANGE_FORM_TEXT[activeForm]}
+                </span>
             </div>
         </div>
     );

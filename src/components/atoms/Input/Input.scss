@@ -1,0 +1,49 @@
+@import 'style-mixins';
+
+.labelText {
+  display: block;
+  margin-bottom: 2px;
+  @include font-base;
+  text-align: left;
+}
+
+.input {
+  display: block;
+  height: $controMediumlHeight;
+  padding: 12px 8px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  overflow: hidden;
+  box-sizing: border-box;
+  outline: none;
+  
+  &:hover {
+    border-color: #e6e6e6;
+  }
+
+  &:focus {
+    border-color: #888;
+  }
+
+  &--error {
+    border-color: $colorRedLight;
+    &:hover {
+      border-color: $colorRedMedium;
+    }
+  
+    &:focus {
+      border-color: $colorRed;
+    }
+  }
+}
+
+.label {
+  display: inline-block;
+  width: 100%;
+
+  .input {
+    display: block;
+    width: 100%;
+  }
+}

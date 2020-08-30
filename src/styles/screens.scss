@@ -1,0 +1,7 @@
+$maxMobileWidth: 767;
+
+@mixin maxMobile {
+    @media only screen and (max-width: $maxMobileWidth) {
+        @content;
+    }
+}

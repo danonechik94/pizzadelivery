@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import Logo from 'icons/Logo';
+import Tooltip from 'atoms/Tooltip';
 import Cart from 'molecules/Cart';
+import CartList from 'molecules/CartList';
 import Navigation from 'organisms/Navigation';
 import Profile from 'organisms/Profile';
 
+
 import styles from './Header.scss';
 
-const Header = ({ showAuth, auth }) => {
+const ADAPTIVE_THRESHOLD = 767;
+
+const Header = ({ 
+  showAuth, 
+  auth, 
+}) => {
+  const tooltipRef = useRef(null);
+
+  const handleCartClick = (evt) => {
+    if (window.innerWidth > ADAPTIVE_THRESHOLD) {
+      evt.preventDefault();
+      tooltipRef.current.show(evt.currentTarget.getBoundingClientRect(), false);
+      // TODO show right aligned tooltip here
+    }
+    // Do not show the tooltip and just follow the cart link
+  };
 
   const profileNode = <Profile auth={auth} showAuth={showAuth} />;
-  const cartNode = <Cart />;
+  const cartNode = <Cart onCartClick={handleCartClick} />;
 
   return (
     <header className={styles.header}>
@@ -19,6 +37,9 @@ const Header = ({ showAuth, auth }) => {
               <Logo className={styles.logoIcon} />
             </a>
 
+            <Tooltip ref={tooltipRef} type="bottom-right">
+              <CartList isCompact={true} />
+            </Tooltip>
             <Navigation
               profileNode={profileNode}
               cartNode={cartNode}

@@ -1,0 +1,16 @@
+@import 'style-mixins';
+
+.submitButtonContainer {
+    padding: 16px 0;
+}
+.inputWrapper {
+    padding: 6px 0;
+}
+
+.errorMessage {
+    display: block;
+    padding-top: 2px;
+    text-align: left;
+    color: $colorRed;
+    @include font-micro;
+}

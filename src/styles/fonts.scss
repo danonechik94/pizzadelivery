@@ -1,0 +1,19 @@
+@mixin font-large {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin font-base {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@mixin font-small {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@mixin font-micro {
+    font-size: 11px;
+    line-height: 12px;
+}
