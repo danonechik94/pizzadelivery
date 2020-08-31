@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Button from 'atoms/Button';
 import NumberInput from 'atoms/NumberInput';
 import Logo from 'icons/Logo';
 
@@ -17,31 +16,13 @@ const CartListItem = ({
   item,
   onAddCount,
   onDeleteCount,
-}) => {
-  const [showDeleteWarning, setShowDeleteWarning] = useState(false);
-
-
-  // TODO come up with better names 
-  const handleAddItemCount = () => {
+}) => { 
+  const handleIncreaseQuantity = (evt) => {
     onAddCount(item);
   };
 
-  const handleDeleteItemCountWithCheck = () => {
-    if (item.count === 0) {
-      setShowDeleteWarning(true);
-    } else {
-      handleDeleteItemCount();
-    }
-    
-  };
-
-  const handleDeleteItemCount = () => {
-    setShowDeleteWarning(false);
+  const handleDecreaseQuantity = (evt) => {
     onDeleteCount(item);
-  };
-
-  const handleCancelButtonClick = () => {
-    setShowDeleteWarning(false);
   };
 
   const finalPrice = price.base * count;
@@ -54,17 +35,7 @@ const CartListItem = ({
         <div className={styles.itemPriceContainer}>
             <div className={styles.itemPriceWrapper}>
                 <div className={styles.priceLabel}>{finalPrice}&nbsp;&euro;</div>
-                <NumberInput value={count} onAdd={handleAddItemCount} onSubstract={handleDeleteItemCount} />
-                {showDeleteWarning ? (
-                  <div className={styles.warningContainer}>
-                    <span>Are you sure you want to delete {name} from your cart?</span>
-                    <div className={styles.warningActionsContainer}>
-                      <Button onClick={handleDeleteItemCount} text={'Ok'} />
-                      <Button onClick={handleCancelButtonClick} text={'Cancel'} />
-                    </div>
-                  </div>
-                  
-                ) : null}
+                <NumberInput value={count} onAdd={handleIncreaseQuantity} onSubstract={handleDecreaseQuantity} />
             </div>
         </div>
       </div>

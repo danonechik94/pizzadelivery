@@ -7,6 +7,7 @@ import Logo from 'icons/Logo';
 
 const OfferItem = ({ 
   onOfferClick, 
+  className,
   data: {
     description,
   },
@@ -18,7 +19,7 @@ const OfferItem = ({
   }
 
   return (
-    <div className={styles.offer} onClick={handleOfferClick}>
+    <div className={cls(styles.offer, className)} onClick={handleOfferClick}>
       <h2 className={styles.offerTitle} dangerouslySetInnerHTML={{ __html: description }} />
       <Logo className={styles.offerIcon} width={150} height={150} />
     </div>

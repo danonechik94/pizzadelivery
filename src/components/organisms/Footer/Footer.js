@@ -8,8 +8,7 @@ const Footer = (props) => {
             <nav className={styles.footerRow} aria-label="Web site navigation">
                 <ul className={styles.navigation}>
                     <li className={styles.navigationItem}><a href="/">Home</a></li>
-                    <li className={styles.navigationItem}><a href="/contacts">Contacts</a></li>
-                    <li className={styles.navigationItem}><a href="/jobs">Jobs</a></li>
+                    <li className={styles.navigationItem}><a href="/about">About Us</a></li>
                 </ul>
                 <div className={styles.contacts}>
                     <a className={styles.contactsItem} href="tel:+4982323223">+49&nbsp;823&nbsp;232&nbsp;23</a>

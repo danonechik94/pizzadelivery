@@ -1,7 +1,14 @@
-$maxMobileWidth: 767;
+$maxMobileWidth: 767px;
+$maxTabletWidth: 1023px;
 
 @mixin maxMobile {
     @media only screen and (max-width: $maxMobileWidth) {
+        @content;
+    }
+}
+
+@mixin maxTablet {
+    @media only screen and (max-width: $maxTabletWidth) {
         @content;
     }
 }

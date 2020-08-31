@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const ICON_SIZE = 24;
 
-function CrossIcon({ className }) {
+function CrossIcon({ className, w, h }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={ICON_SIZE}
-      height={ICON_SIZE}
+      width={w}
+      height={h}
       viewBox="0 0 24 24"
       className={className}
     >
@@ -19,6 +19,13 @@ function CrossIcon({ className }) {
 
 CrossIcon.propTypes = {
   className: PropTypes.string,
+  w: PropTypes.number,
+  h: PropTypes.number,
+};
+
+CrossIcon.defaultProps = {
+  w: ICON_SIZE,
+  h: ICON_SIZE,
 };
 
 CrossIcon.ICON_SIZE = ICON_SIZE;

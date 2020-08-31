@@ -1,3 +1,5 @@
+@import 'style-mixins';
+
 .navigation {
     display: flex;
 }
@@ -8,7 +10,7 @@
 }
 
 .navigationItem {
-    padding: 0 32px;
+    margin: 0 16px;
     text-align: center;
 }
 
@@ -40,6 +42,7 @@
 
 .profileNavigationItem {
     padding-left: 32px;
+    text-align: center;
 }
 
 .hamburger {
@@ -120,8 +123,8 @@
     .navigationItem,
     .cartNavigationItem,
     .profileNavigationItem {
+        margin: 0;
         padding: 8px 0;
-        text-align: left;
         font-size: 18px;
     }
 

@@ -52,7 +52,7 @@ class Home extends React.PureComponent {
     offerData: undefined,
   };
 
-  tooltipRef = createRef(null);
+  itemCountTooltipRef = createRef(null);
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -65,7 +65,7 @@ class Home extends React.PureComponent {
       const selectedItem = items.find((item) => item.id === this.currentItem.id);
       if (!selectedItem || selectedItem.count === 0) {
         this.currentItem = null;
-        this.tooltipRef.current.hide();
+        this.itemCountTooltipRef.current.hide();
       }
     }
   }
@@ -88,19 +88,19 @@ class Home extends React.PureComponent {
   handleGridItemChoose = (itemData, clickElementBoundingRect) => {
     this.currentItem = itemData;
     this.handleItemChoose(itemData);
-    this.tooltipRef.current.show(clickElementBoundingRect);
+    this.itemCountTooltipRef.current.show(clickElementBoundingRect);
   };
 
   handleItemChoose = () => {
     if (this.currentItem) {
-      this.tooltipRef.current.resetDisappear();
+      this.itemCountTooltipRef.current.resetDisappear();
       this.props.dispatch(addToCart(this.currentItem));
     }
   };
 
   handleItemDelete = () => {
     if (this.currentItem) {
-      this.tooltipRef.current.resetDisappear();
+      this.itemCountTooltipRef.current.resetDisappear();
       this.props.dispatch(deleteFromCart(this.currentItem));
     }
   };
@@ -127,6 +127,7 @@ class Home extends React.PureComponent {
     // TODO implement offers as separate items and entity in DB
     return _range(6).map(_ => 
       <OfferItem 
+        className={styles.featured}
         data={{
           description: 'New Combo <br/>for just 15&nbsp;&euro;',
           name: 'New Combo',
@@ -162,7 +163,6 @@ class Home extends React.PureComponent {
               showLogo={sticky} 
             />
           )}
-          
         </StickyComponent>
         <div>
           {groups.map(group => {
@@ -175,7 +175,7 @@ class Home extends React.PureComponent {
               >
                 <InViewComponent onInView={this.handleInView(group)} options={{threshold: 0.15}}>
                   <h2 className={styles.categoryTitle}>{group.title}</h2>
-                  <Tooltip ref={this.tooltipRef}>
+                  <Tooltip ref={this.itemCountTooltipRef}>
                     <NumberInput value={this.getSelectedItemCount()} onAdd={this.handleItemChoose} onSubstract={this.handleItemDelete} />
                   </Tooltip>
                   <ItemsGrid 
@@ -201,9 +201,6 @@ class Home extends React.PureComponent {
       <div>
         <Gallery 
           items={this.renderSliderItems()} 
-          childrenClassNames={{
-            slideClassName: styles.featured
-          }} 
         />
         {loadingData ? (
           <div className={styles.loaderContainer}>

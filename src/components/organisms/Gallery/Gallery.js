@@ -12,9 +12,15 @@ const DEFAULT_CAROUSEL_OPTIONS = {
   buttonsDisabled: true,
   dotsDisabled: true,
   infinite: true,
+  responsive: {
+    768: {
+      autoPlay: true,
+      stopAutoPlayOnHover: true,
+    }
+  },
   stagePadding: {
-    paddingLeft: 32,
-    paddingRight: 32,
+    paddingLeft: 20,
+    paddingRight: 20
   }
 };
 
@@ -29,8 +35,8 @@ const Gallery = (props) => {
 
   return (
     <AliceCarousel {...DEFAULT_CAROUSEL_OPTIONS} {...galleryOptions}>
-        {items.map(item => (
-          <div className={cls(styles.slide, slideClassName)}>
+        {items.map((item, index) => (
+          <div className={cls(styles.slide, slideClassName)} key={`item_${item.id || index}`}>
             {item}
           </div>
         ))}

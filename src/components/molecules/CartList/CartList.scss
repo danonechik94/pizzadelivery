@@ -1,12 +1,17 @@
 @import 'style-mixins';
 
 .cartListContainer {
+    width: 100%;
     text-align: left;
+
+    &--compact {
+        width: auto;
+    }
 }
 
 .cartListTitle {
     margin: 0 0 8px;
-    padding: 0 8px;
+    padding: 0 32px 0 8px; // Right padding is the space for the close icon
     @include font-large;
 }
 
@@ -14,4 +19,15 @@
     padding: 16px 8px;
     border-top: 1px solid #eeeeee;
     
+}
+
+.cardListActionsContainer {
+    padding-top: 16px;
+}
+
+.cardListAction {
+    padding: 0 8px;
+    @include font-base;
+    color: $primaryColor;
+    text-decoration: underline;
 }

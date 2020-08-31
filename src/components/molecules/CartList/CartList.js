@@ -6,10 +6,12 @@ import { cartDataSelector } from '_redux/modules/cart/selectors';
 import { 
   addToCart,
   deleteFromCart, 
+  clearCart,
 } from '_redux/modules/cart/actions';
  
 import CartListItem from './blocks/CartListItem';
 
+import cls from 'classnames';
 import styles from  './CartList.scss';
 
 const CartList = ({ 
@@ -27,8 +29,13 @@ const CartList = ({
     dispatch(deleteFromCart(item));
   };
 
+  const handleClearCartClick = (evt) => {
+    evt.preventDefault();
+    dispatch(clearCart());
+  };
+
   return (
-    <div className={styles.cartListContainer}>
+    <div className={cls(styles.cartListContainer, { [styles['cartListContainer--compact']]: isCompact })}>
       <h3 className={styles.cartListTitle}>
         {count} items in cart
       </h3>
@@ -44,8 +51,24 @@ const CartList = ({
           </li>
         ))}
       </ul>
-      <a>Close</a>
-      <a>Clear Cart</a>
+
+      {count > 0 ? (
+        <div className={styles.cardListActionsContainer}>
+          <a 
+            className={styles.cardListAction} 
+            onClick={handleClearCartClick}
+          >
+            Clear Cart
+          </a>
+
+          <a 
+            className={styles.cardListAction} 
+            href="/cart"
+          >
+            Go to Cart
+          </a>
+        </div>
+      ) : null}
     </div>
   );
 };

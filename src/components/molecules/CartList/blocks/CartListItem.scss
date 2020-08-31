@@ -28,3 +28,15 @@
 .priceLabel {
     padding-right: 8px;
 }
+
+.warningContainer {
+    padding-top: 8px;
+}
+
+.warningText {
+    @include font-base;
+}
+
+.warningOkButton {
+    margin-right: 4px;
+}

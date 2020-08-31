@@ -10,14 +10,9 @@ const siteNavItems = [
         href: '/',
     },
     {
-        id: 'Contacts',
-        title: 'Contacts',
-        href: '/contacts',
-    },
-    {
-        id: 'Jobs',
-        title: 'Jobs',
-        href: '/jobs',
+        id: 'About',
+        title: 'About us',
+        href: '/about',
     },
 ];
 
@@ -55,7 +50,7 @@ const Navigation = (props) => {
         <div className={cls(className, styles.navigations)}>
             <ul className={cls(styles.navigationList, { [styles['navigationList--active']]: toggled })}>
                 {navItems}
-                <li className={styles.cartNavigationItem}>
+                <li className={cls(styles.navigationItem, styles.cartNavigationItem)}>
                     {cartNode}
                 </li>
                 <li className={styles.profileNavigationItem}>

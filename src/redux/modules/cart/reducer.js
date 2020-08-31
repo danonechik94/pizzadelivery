@@ -53,7 +53,7 @@ export default (state = initialState, action = {}) => {
       const existingItem = items.find((item) => item.id === itemData.id);
       if (existingItem.count === 1) {
         const existingItemIndex = items.findIndex((item) => item.id === itemData.id);
-        items.splice(existingItemIndex);
+        items.splice(existingItemIndex, 1);
         newItems = items;
       } else {
         existingItem.count -= 1;

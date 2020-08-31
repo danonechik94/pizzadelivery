@@ -2,3 +2,17 @@
 @import 'colors';
 @import 'fonts';
 @import 'screens';
+
+
+
+
+:global {
+    html,
+    body {
+        min-height: 100vh;
+    }
+    #app {
+        min-height: 100vh;
+    }    
+}
+ 

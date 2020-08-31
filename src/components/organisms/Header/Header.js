@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 
 import Logo from 'icons/Logo';
+import Cross from 'icons/Cross';
 import Tooltip from 'atoms/Tooltip';
 import Cart from 'molecules/Cart';
 import CartList from 'molecules/CartList';
@@ -22,9 +23,12 @@ const Header = ({
     if (window.innerWidth > ADAPTIVE_THRESHOLD) {
       evt.preventDefault();
       tooltipRef.current.show(evt.currentTarget.getBoundingClientRect(), false);
-      // TODO show right aligned tooltip here
     }
     // Do not show the tooltip and just follow the cart link
+  };
+
+  const handleCloseCartClick = () => {
+    tooltipRef.current.hide();
   };
 
   const profileNode = <Profile auth={auth} showAuth={showAuth} />;
@@ -38,7 +42,12 @@ const Header = ({
             </a>
 
             <Tooltip ref={tooltipRef} type="bottom-right">
-              <CartList isCompact={true} />
+              <div className={styles.cartListContainer}>
+                <CartList isCompact={true} />
+                <div className={styles.closeIconContainer} onClick={handleCloseCartClick}>
+                 <Cross className={styles.closeIcon} />
+                </div>
+              </div>
             </Tooltip>
             <Navigation
               profileNode={profileNode}

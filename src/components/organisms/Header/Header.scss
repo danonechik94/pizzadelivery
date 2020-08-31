@@ -15,3 +15,14 @@ $primaryColor: #ff8800;
 .logoIcon {
     fill: $primaryColor;
 }
+
+.cartListContainer {
+    position: relative;
+}
+
+.closeIconContainer {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
