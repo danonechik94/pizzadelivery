@@ -18,6 +18,11 @@ class CartPage extends React.PureComponent {
     return (
       <div className={styles.cartContainer}>
         <CartList />
+
+        <div className={styles.cartAddress}>
+          <h2>Delivery Address</h2>
+
+        </div>
       </div>
     );
   }

@@ -61,12 +61,14 @@ const CartList = ({
             Clear Cart
           </a>
 
-          <a 
-            className={styles.cardListAction} 
-            href="/cart"
-          >
-            Go to Cart
-          </a>
+          {isCompact ? (
+            <a 
+              className={styles.cardListAction} 
+              href="/cart"
+            >
+              Go to Cart
+            </a>
+          ) : null}
         </div>
       ) : null}
     </div>
