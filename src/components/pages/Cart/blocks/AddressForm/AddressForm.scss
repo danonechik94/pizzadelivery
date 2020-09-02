@@ -1,0 +1,29 @@
+@import 'style-mixins';
+
+.addressRow {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 -8px 16px;
+}
+
+.addressSection {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+
+    @include maxMobile {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+}
+
+.inputWrapper {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 8px;
+
+    &--wide {
+        width: 100%;
+    }
+}
