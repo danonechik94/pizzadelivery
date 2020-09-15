@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { Container, Col } from 'molecules/Grid';
+import { Container, Col, Row } from 'molecules/Grid';
 import ItemCard from './blocks/ItemCard';
 
 import cls from 'classnames';
