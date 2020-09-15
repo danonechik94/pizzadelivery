@@ -48,7 +48,7 @@ const CartListItem = ({
         <div className={styles.itemPriceContainer}>
             <div className={styles.itemPriceWrapper}>
                 <div className={styles.priceLabel}>{finalPrice}&nbsp;&euro;</div>
-                <NumberInput value={count} onAdd={handleIncreaseQuantity} onSubstract={handleDecreaseQuantity} />
+                <NumberInput value={count} onAdd={handleIncreaseQuantity} onSubstract={handleDecreaseQuantity} className={styles.numberInputControl} />
             </div>
         </div>
       </div>

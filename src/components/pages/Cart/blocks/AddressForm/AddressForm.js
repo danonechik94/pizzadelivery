@@ -1,87 +1,86 @@
-import React, { createRef } from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
 
 import cls from 'classnames';
 import styles from './AddressForm.scss';
+import commonStyles from '../../Cart.scss';
 
 import Input from 'atoms/Input';
+import { Container, Col, Row } from 'molecules/Grid';
 
-const renderError = () => 'Error';
+const renderError = () => (<div className={commonStyles.errorText}>Error</div>);
 
-const AddressForm = ({  }) => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+const AddressForm = ({ register, errors }) => {
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className={styles.addressRow}>
-        <div className={styles.addressSection}>
-          <div className={cls(styles.inputWrapper, styles['inputWrapper--wide'])}>
+    <Container className={styles.addressContainer}>
+      <Row>
+        <Col colSpan={4} className={styles.addressSection}>
+          <div className={cls(commonStyles.inputWrapper, commonStyles['inputWrapper--wide'])}>
               <Input 
-                  name="street" 
-                  label="Street"
-                  meta={{ error: errors.street }} 
+                  name="address" 
+                  label="Address"
+                  placeholder="542 W. 15th Street"
+                  meta={{ error: errors.address }} 
                   inputRef={register({ required: true })} 
               />
-              {errors.street && renderError(errors.street)}
+              {errors.address && renderError(errors.address)}
           </div>
-        </div>
+        </Col>
         
-        <div className={styles.addressSection}>
-          <div className={styles.inputWrapper}>
+        <Col colSpan={4} className={styles.addressSection}>
+          <div className={cls(commonStyles.inputWrapper, commonStyles['inputWrapper--wide'])}>
               <Input 
-                  name="building" 
-                  label="Building"
-                  meta={{ error: errors.building }} 
+                  name="fullName" 
+                  label="Full Name"
+                  placeholder="John Doe"
+                  meta={{ error: errors.fullName }} 
                   inputRef={register({ required: true })} 
               />
-              {errors.building && renderError(errors.building)}
+              {errors.fullName && renderError(errors.fullName)}
           </div>
-          <div className={styles.inputWrapper}>
-              <Input 
-                  name="apartmentpt" 
-                  label="Apartment"
-                  meta={{ error: errors.apartmentpt }} 
-                  inputRef={register({ required: true })} 
-              />
-              {errors.apartmentpt && renderError(errors.apartmentpt)}
-          </div>
-        </div>
-      </div>
+        </Col>
 
-      <div className={styles.addressRow}>
-        <div className={styles.addressSection}>
-          <div className={cls(styles.inputWrapper, styles['inputWrapper--wide'])}>
-              &nbsp;
-          </div>
-        </div>
-        
-        <div className={styles.addressSection}>
-          <div className={styles.inputWrapper}>
+        <Col colSpan={4} className={styles.addressSection}>
+          <div className={cls(commonStyles.inputWrapper, commonStyles['inputWrapper--wide'])}>
               <Input 
-                  name="entranceNo" 
-                  label="Entrance No"
-                  meta={{ error: errors.entranceNo }} 
+                  name="comments" 
+                  label="Comments"
+                  placeholder="Write any comments to your order"
+                  meta={{ error: errors.comments }} 
+                  inputRef={register()} 
+              />
+              {errors.comments && renderError(errors.comments)}
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col colSpan={4} className={styles.addressSection}>
+          <div className={cls(commonStyles.inputWrapper, commonStyles['inputWrapper--wide'])}>
+              <Input 
+                  name="phoneNumber" 
+                  label="Phone Number"
+                  placeholder="+49 000 000 000"
+                  meta={{ error: errors.phoneNumber }} 
                   inputRef={register({ required: true })} 
               />
-              {errors.entranceNo && renderError(errors.entranceNo)}
+              {errors.phoneNumber && renderError(errors.phoneNumber)}
           </div>
-          <div className={styles.inputWrapper}>
-              <Input 
-                  name="storey" 
-                  label="Storey"
-                  meta={{ error: errors.storey }} 
-                  inputRef={register({ required: true })} 
-              />
-              {errors.storey && renderError(errors.storey)}
-          </div>
-        </div>
-      </div>
-      
+        </Col>
 
-    </form>
+        <Col colSpan={4} className={styles.addressSection}>
+          <div className={cls(commonStyles.inputWrapper, commonStyles['inputWrapper--wide'])}>
+              <Input 
+                  name="email" 
+                  label="Email"
+                  placeholder="your@email.com"
+                  meta={{ error: errors.email }} 
+                  inputRef={register()} 
+              />
+              {errors.email && renderError(errors.email)}
+          </div>
+        </Col>
+      </Row>
+    </Container>
   )
 };
 

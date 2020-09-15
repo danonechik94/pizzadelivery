@@ -7,7 +7,7 @@
 }
 
 .itemInfoContainer {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,12 +24,16 @@
 }
 
 .itemTitle {
-    margin: 0 0 8px;
+    
     @include font-base;
 }
 
 .itemDescription {
-    margin: 0;
+    margin: 8px 0 0;
+
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
 }
 
 .itemPriceWrapper {
@@ -51,4 +55,22 @@
 
 .warningOkButton {
     margin-right: 4px;
+}
+
+.itemImage {
+    flex: 0 0 42px;
+}
+
+.itemPriceContainer {
+    
+}
+
+.numberInputControl {
+    display: flex;
+}
+
+.itemTextContainer {
+    @media screen and (max-width: 500px) {
+        flex: 1 0 auto;
+    }
 }

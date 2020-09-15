@@ -3,8 +3,8 @@ import cls from 'classnames'
 
 import styles from './Grid.scss';
 
-const Col = ({ children, className }) => (
-    <div className={cls(styles.col, className)}>
+const Col = ({ children, className, colSpan }) => (
+    <div className={cls(styles.col, styles[`col${colSpan}`], className)}>
         {children}
     </div>
 );

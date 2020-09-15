@@ -7,10 +7,12 @@ const Input = ({
     value, 
     name, 
     label,
+    placeholder,
     meta, 
     inputRef,
     className, 
     type = "text",
+    ...restInputProps
 }) => {
     const labelClasses = cls(
         {
@@ -32,12 +34,14 @@ const Input = ({
             value={value} 
             type={type}
             ref={inputRef} 
+            placeholder={placeholder}
+            {...restInputProps}
         />
     );
     
     if (label) {
         return  (
-            <label for={name} className={cls(styles.label, labelClasses)}>
+            <label htmlFor={name} className={cls(styles.label, labelClasses)}>
                 <span className={styles.labelText}>
                     {label}
                 </span>

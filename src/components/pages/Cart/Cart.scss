@@ -3,12 +3,51 @@
 .cartContainer {
     flex: 1 0 auto;
     max-width: 1056px;
+    box-sizing: border-box;
     width: 100%;
     margin: 0 auto;
     padding: 0 16px;
 }
 
-.cartAddress {
+.orderContainer {
     padding: 48px 0;
     border-top: 1px splid #eeeeee;
+}
+
+.errorText {
+    color: $colorRedMedium;
+    @include font-small;
+}
+
+.orderPaymentSummary {
+    padding: 8px;
+}
+
+.inputWrapper {
+    padding: 8px;
+    box-sizing: border-box;
+
+    &--inline {
+        width: 50%;
+        display: inline-block;
+    }
+}
+
+.summaryItem {
+    padding: 2px 0;
+}
+
+.paymentItem { 
+    
+    @include font-base;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.total {
+    margin-top: 8px;
+    border-top: 1px solid #eee;
+    @include font-large;
 }

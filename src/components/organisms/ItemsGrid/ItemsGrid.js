@@ -17,8 +17,8 @@ const ItemsGrid = ({ data, cartData, onChooseItem }) => {
     };
 
     return (
-        <React.Fragment>
-            <Container>
+        <Container>
+            <Row>
                 {data.map(item => {
                     const itemCardProps = {
                         data: item,
@@ -33,13 +33,13 @@ const ItemsGrid = ({ data, cartData, onChooseItem }) => {
                     }
 
                     return (
-                        <Col key={`${item.id}_col`}>
+                        <Col key={`${item.id}_col`} className={styles.itemCol}>
                             <ItemCard {...itemCardProps} />
                         </Col>
                     );
                 })}
-            </Container>
-        </React.Fragment>
+            </Row>
+        </Container>
     );
 };
     
