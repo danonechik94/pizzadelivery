@@ -12,6 +12,7 @@
     "connected-react-router": "6.4.0",
     "cross-env": "5.2.0",
     "express": "4.16.4",
+    "http-proxy-middleware": "0.18.0",
     "intersection-observer": "^0.10.0",
     "ip": "1.1.5",
     "js-cookie": "^2.2.1",
@@ -33,7 +34,8 @@
     "redux-thunk": "^2.3.0",
     "reselect": "4.0.0",
     "resolve-url-loader": "2.3.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",

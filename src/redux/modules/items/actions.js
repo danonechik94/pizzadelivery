@@ -1,4 +1,5 @@
 import T from './types';
+import superagent from 'superagent';
 
 // TODO remove in prod
 import sleep from 'utility/sleep';
@@ -8,9 +9,18 @@ export default () => {
   return function(dispatch) {
     return dispatch({
       promise: async () => {
-        await sleep(2000);
+        const res = await superagent
+          .get('/_api/get_items')
+          .set('Accept', 'application/json');
 
-        return FULL_ITEMS_LIST
+        if (res && res.body) {
+          return res.body;
+        } else {
+          return Promise.reject();
+        }
+        // await sleep(2000);
+
+        // return FULL_ITEMS_LIST
       },
       types: [T.ITEMS_FETCH, T.ITEMS_FETCH_SUCCESS, T.ITEMS_FETCH_FAIL],
     });

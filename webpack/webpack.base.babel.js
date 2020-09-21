@@ -145,6 +145,10 @@ module.exports = options => ({
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    new webpack.DefinePlugin({
+      __DEV__: options.mode === 'development',
+      __PROD__: options.mode !== 'development',
+    })
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
